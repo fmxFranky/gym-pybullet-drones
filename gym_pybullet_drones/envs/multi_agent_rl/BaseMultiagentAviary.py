@@ -254,14 +254,14 @@ class BaseMultiagentAviary(BaseAviary, MultiAgentEnv):
                                         )
             elif self.ACT_TYPE == ActionType.ONE_D_PID:
                 state = self._getDroneStateVector(int(k))
-                rpm, _, _ = self.ctrl[k].computeControl(control_timestep=self.AGGR_PHY_STEPS*self.TIMESTEP, 
+                rpm_k, _, _ = self.ctrl[k].computeControl(control_timestep=self.AGGR_PHY_STEPS*self.TIMESTEP, 
                                                         cur_pos=state[0:3],
                                                         cur_quat=state[3:7],
                                                         cur_vel=state[10:13],
                                                         cur_ang_vel=state[13:16],
                                                         target_pos=state[0:3]+0.1*np.array([0,0,v[0]])
                                                         )
-                rpm[int(k),:] = rpm
+                rpm[int(k),:] = rpm_k
             else:
                 print("[ERROR] in BaseMultiagentAviary._preprocessAction()")
                 exit()
