@@ -14,7 +14,8 @@ import pybullet_data
 import gym
 from gym_pybullet_drones.utils.enums import DroneModel, Physics, ImageType
 
-
+import warnings
+warnings.filterwarnings("ignore", category=UserWarning, module="gym")
 
 class BaseAviary(gym.Env):
     """Base class for "drone aviary" Gym environments."""
